@@ -7,7 +7,8 @@ Adafruit_DCMotor *rightMotor = AFMS.getMotor(4);
 Adafruit_DCMotor *leftMotor = AFMS.getMotor(3);
 
 long duration;
-long distance = 0;
+long distance;
+//long leftCount=0;
 
 void setup() {
   AFMS.begin();
@@ -46,7 +47,7 @@ void backwards(){
 }
 
 void turnLeft(){
-  rightMotor->setSpeed(0);
+  rightMotor->setSpeed(120);
   leftMotor->setSpeed(255);
 
   rightMotor->run(BACKWARD);
@@ -55,7 +56,7 @@ void turnLeft(){
 
 void turnRight(){
   rightMotor->setSpeed(255);
-  leftMotor->setSpeed(0);
+  leftMotor->setSpeed(152);
 
   rightMotor->run(FORWARD);
   leftMotor->run(BACKWARD);
@@ -77,14 +78,22 @@ long distanceTest(){
 
 void autoDriver(){
   distanceTest();
-  if(distance < 5){
+  if(distance >= 5){
     backwards();
-    //delay(100);
-    turnLeft();
+  }
+  else if(distance<5){
+    forwards();
+    delay(50);
+    turnRight();
+    delay(25);
     //delay(10);
   }
   else{
     forwards();
+    delay(1000);
+    turnRight();
+    delay(50);
+    //delay(10);
     
   }
 }
