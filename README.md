@@ -1,2 +1,2 @@
 # TEC284-Lab5
-Program for controlling the direction of a race car
+This program controls the direction and speed of the Adafruit Motor shield on the race car.
